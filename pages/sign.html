@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>签名识别</title>
+    <link href="../css/sign.css" rel="stylesheet"/>
+    <link href="../css/layer.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div class="sign-content">
+        <div class="pic-add">
+            <div class="pic-upload" id="pic-upload">
+
+               <ul class="pic-multi">
+                    <li style="margin-left: 0" id="pic1">&#43;</li>
+                    <li id="pic2">&#43;</li>
+                    <li id="pic3">&#43;</li>
+                    <li style="margin-left: 0" id="pic4">&#43;</li>
+                    <li id="pic5">&#43;</li>
+                    <li id="pic6">&#43;</li>
+                    <li style="margin-left: 0" id="pic7">&#43;</li>
+                    <li id="pic8">&#43;</li>
+                    <li id="pic9">&#43;</li>
+                </ul>
+                <ul class="pic-show-list">
+                    <li>&nbsp;</li>
+                </ul>
+                
+                <!--<p>Upload Your Picture</p>-->
+            </div>
+            <!--<input type="button" value="Check it"/>-->
+            <p class="button" id="get_result">Check It</p>
+            <p class="button" id="send_result" style="display: none">Get Result</p>
+        </div>
+        <div class="result-list">
+            <div class="result-info">
+                <ul class="result-info-1">
+                    <li style="background: #fff">&ensp;</li>
+                    <li class="list-title">a</li>
+                    <li class="list-title">b</li>
+                    <li class="list-title">c</li>
+                    <li class="list-title">d</li>
+                    <li class="list-title">f</li>
+                </ul>
+                <ul class="result-info-2">
+                    <li class="list-title">A</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                </ul>
+                <ul class="result-info-3">
+                    <li class="list-title">B</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                </ul>
+                <ul class="result-info-4">
+                    <li class="list-title">C</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                </ul>
+                <ul class="result-info-5">
+                    <li class="list-title">D</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                </ul>
+                <ul class="result-info-6">
+                    <li class="list-title">E</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                    <li>&ensp;</li>
+                </ul>
+                <ul class="result-info-7"></ul>
+                <ul class="result-info-8"></ul>
+                <ul class="result-info-9"></ul>
+            </div>
+            <p>Result List</p>
+
+        </div>
+    </div>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+<script type="text/javascript" src="../js/sign.js"></script>
+<script type="text/javascript" src="../js/testpic.js"></script>
+<script type="text/javascript" src="../js/pic-show.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+
+            // $pic=$("#pic1");
+            var url="data:image/png;base64,"+pic;
+            // $pic.css("background-image","url("+url+")");
+            // $pic.css("background-color","#fff");
+            // $pic.css("background-size","100% 100%");
+            // $pic.text(" ");
+            //$(".pic-upload img").attr("src",url);
+
+
+       // $(".pic-upload ul li").click(function(){
+       //     console.log(this.id);
+       //     var idstring=this.id;
+       //     product_brand_edit('签名拍摄','pic_window.html','1','60','70',this.id);
+       //
+       //
+       // });
+        //测试数据
+        // $("#pic1").css("background","url("+url+") no-repeat");
+        // $("#pic1").css("background-size","100% 100%");
+        // $("#pic5").css("background","url("+url+") no-repeat");
+        // $("#pic5").css("background-size","100% 100%")
+
+        //多张上传处理方式==========
+        var textvalue='';
+        $(".pic-show-list").click(function () {
+           // product_brand_edit('签名拍摄','chooseUploadFunction.html','1','50','20',this.id);
+            product_brand_edit('签名拍摄','pic_window.html','1','50','30',this.id);
+
+        });
+        $(".pic-multi li").click(function(){
+            console.log(this.id);
+            var idstring=this.id;
+            product_brand_edit('签名拍摄','pic_window.html','1','60','70',this.id);
+
+
+        });
+        function getMultiPic(){
+            pic_count=0;
+            var style='';
+            var multiPicArray=[];
+            //统计传入图片的数量
+            for(var i=1;i<10;i++){
+                $pic=$("#pic"+i);
+                if($pic.css("background-image")){
+                    style=$pic.css("background-image");
+                    if(style.length>10000){
+                        console.log(style.length);
+                        multiPicArray.push(style);
+                        pic_count++;
+                    }
+                }
+            }
+            return multiPicArray;
+        }
+        function multiUpload(){
+            var multiPic=getMultiPic();
+            picShow(multiPic);
+            $(".pic-multi").hide();
+            $(".pic-show-list").css("background-image"," ");
+            $(".pic-show-list").show();
+            console.log(multiPic);
+
+        }
+
+
+        //上传图片
+        $("#get_result").click(function () {
+            // console.log(textValue);
+            // if(textValue=="multi"){
+            //     console.log("多张上传");
+            //     multiUpload();
+            // }
+
+            var picURL=$(".pic-show-list li").css("background-image");
+            var picBase64=picURL.split('data:image/png;base64,')[1];
+            console.log(picBase64);
+            var postData={};
+            var url="http://22.10.35.200:5000/cut_s";
+            postData.function="切割-签名";
+            postData.content=picBase64;
+            console.log(postData);
+            // sendMSG(url,postData,1);
+            var results={};
+            results.path='./draws';
+            results.file_lab="s.000017.lab.csv";
+            results.pic_array=["../image/1.png","../image/1.png","../image/1.png","../image/1.png","../image/1.png"];
+            sucResults(results);
+        })
+
+
+        //成功回调
+        function sucResults(results){
+            picShow(results.pic_array);
+            $("#get_result").hide();
+            $("#send_result").css("pointer-events","auto");
+            $("#send_result").show();
+            $("#send_result").click(function () {
+                var resultURL='http://22.10.35.200:5000/sgn';
+                var resultPostData={};
+                resultPostData.url=resultURL;
+                resultPostData.function='签名验证';
+                resultPostData.path=results.path;
+                resultPostData.file_lab=results.file_lab;
+                console.log(resultPostData);
+              //  sendMSG(resultURL,resultPostData,2);
+
+                //结果测试数据
+                var returnResults={};
+                returnResults.array=["A","B","0.192","E","0.135","C","0.119","D","0.074",
+                                "B","A","0.192","C","0.192","E","0.130","D","0.105",
+                                "C","D","0.213","B","0.192","E","0.177","A","0.119",
+                                "D","C","0.213","E","0.120","B","0.105","A","0.074",
+                                "E","C","0.177","A","0.135","B","0.130","D","0.120"];
+                returnResults.count=5;
+                console.log(returnResults);
+
+
+                sucResultesShow(returnResults);
+            });
+        }
+
+        //结果回调展示
+
+        function sucResultesShow(results){
+
+            var groupLength=results.count*2-1;
+            console.log(groupLength);
+            getResult(results);
+
+        }
+
+
+
+
+
+
+        function product_brand_edit(title, url,name, w, h,id) {
+            console.log(id);
+            layer_show(title, url,name, w, h,id);
+        }
+
+
+
+        function getResult(results){
+             pic_count=results.count;
+             pic_array=results.array;
+             var group_length=pic_count*2-1;
+             console.log(group_length);
+            // var style='';
+            // //统计传入图片的数量
+            // for(var i=1;i<10;i++){
+            //     $pic=$("#pic"+i);
+            //     if($pic.attr("style")){
+            //         style=$pic.attr("style");
+            //         if(style.length>10000){
+            //             console.log(style.length);
+            //         pic_count++;
+            //     }
+            //     }
+            // }
+            // console.log(pic_count);
+
+            //处理结果列表
+
+            for(var m=1;m<10;m++){
+                $(".result-info-"+m).empty();
+
+            }
+            //第一行处理
+            var listString1='<li style="background: #fff">&ensp;</li>';
+            var colorValue=0;
+            for(var j=0;j<=pic_count;j++){
+
+                var showPosition=1;
+                var listString2='<li class="list-title">'+String.fromCharCode(64+j)+'</li>';
+                colorValue=181;
+                for(var k=0;k<pic_count-1;k++){
+                    if(j==0){
+                        listString1=listString1+'<li class="list-title">'+''+'</li>';
+                        //listString1=listString1+'<li class="list-title">'+String.fromCharCode(97+k)+'</li>';
+                    }else{
+                        colorValue=colorValue+j*10;
+                        if(colorValue>241){
+                            colorValue=241;
+                        }
+                        var colorValueString="rgb("+colorValue+','+colorValue+','+colorValue+')';
+                        listString2=listString2+'<li style="background:'+colorValueString+'">'+pic_array[(j-1)*group_length+showPosition]+'</li>';
+
+                        showPosition=showPosition+2;
+                      //  debugger;
+                    }
+                }
+                if(j==0){
+                    $(".result-info-"+(j+1)).append(listString1);
+                }else {
+                    $(".result-info-"+(j+1)).append(listString2);
+                }
+
+            }
+
+
+        }
+       // console.log(pic);
+
+        function sendMSG(url,postData,item){
+            $.ajax({
+                url:url,
+                type:'POST',
+                data:JSON.stringify(postData),
+                dataType:'json',
+                headers:{
+                   "Content-Type":'application/json;'
+                },
+                success:function(result){
+                  console.log(result);
+                  if(item==1){
+                      sucResults(result);
+                  }else if(item==2){
+                      sucResultesShow(result);
+                  }
+                },
+                error:function(error){
+                    console.log(error);
+                }
+            });
+
+
+            // $.ajax({
+            //     url:postData.url+"?url="+postData.url+"&function="+postData.function+"&content="+postData.content,
+            //     type:'GET',
+            //     success:function(result){
+            //         console.log(result);
+            //     },
+            //     error:function(error){
+            //         console.log(error);
+            //     }
+            // })
+        }
+    });
+</script>
+</body>
+</html>

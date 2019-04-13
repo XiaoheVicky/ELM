@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选取上传方式</title>
+    <link href="../css/sign.css" rel="stylesheet"/>
+    <link href="../css/layer.css" rel="stylesheet"/>
+    <link href="../css/choose.css" rel="stylesheet"/>
+
+</head>
+<body>
+    <div class="choose-list">
+        <ul>
+            <li class="multi-upload">上传多张</li>
+            <li class="single-upload">整张上传</li>
+        </ul>
+    </div>
+    <script src="../js/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/layer.js"></script>
+    <script type="text/javascript" src="../js/sign.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $(".multi-upload").click(function(){
+            //    parent.product_brand_edit('签名拍摄','pic_window.html','1','50','20','aab');
+                parent.textValue='multi';
+                parent.$(".pic-multi").show();
+                parent.$(".pic-show-list").hide();
+                parent.$("#get_result").css("background","#2e8ded");
+                parent.$("#get_result").css("pointer-events","auto");
+                layer_close();
+            });
+            $(".single-upload").click(function(){
+                parent.textvalue="98988";
+                layer_close();
+            });
+            function product_brand_edit(title, url,name, w, h,id) {
+                console.log(id);
+                layer_show(title, url,name, w, h,id);
+            }
+        })
+    </script>
+</body>
+</html>

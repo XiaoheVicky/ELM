@@ -1,0 +1,26 @@
+.choose-list{
+    margin:3% auto;
+    width: 90%;
+
+}
+.choose-list ul{
+    overflow: hidden;
+    display:flex;
+    justify-content: space-around;
+}
+
+.choose-list ul li{
+    width: 20vw;
+    height: 20vw;
+    line-height: 20vw;
+    float: left;
+    text-align: center;
+    background-color:#2e8ded;
+    border-radius: 50%;
+    color:#fff;
+    font-weight: bold;
+    font-size: 4vw;
+}
+.choose-list ul li:hover{
+    background-color:#07c6fd;
+}

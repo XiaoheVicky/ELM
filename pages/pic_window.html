@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>手写题识别</title>
+    <link href="../css/sign.css" rel="stylesheet"/>
+    <link href="../css/layer.css" rel="stylesheet"/>
+
+</head>
+<body>
+<div class="pic-window">
+    <div class="box">
+        <video id="video"></video>
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <!--<button id="live">直播</button>-->
+    <div class="carm-button">
+        <div class="take-photo" id="snap">拍 摄</div>
+        <div class="button-list">
+            <div class="take-photo" id="pic-cancle">重拍</div>
+            <div class="take-photo" id="pic-submit">确定</div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+<script type="text/javascript" src="../js/sign.js"></script>
+<script type="text/javascript" src="../js/testpic.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var url="data:image/png;base64,"+pic;
+        $("#snap").click(function(){
+            parent.$(".pic-show-list li").css("background-image","url("+url+")");
+            parent.$("#get_result").css("pointer-events","auto");
+            layer_close();
+        });
+        // var url;
+        // liveVideo();
+        // function getUrlQueryObject(){
+        //     console.log(window.location.href);
+        //     var query = decodeURIComponent(window.location.search.substring(1));
+        //     var urlArray = query.split('&'),queryObj = {};
+        //     urlArray.forEach(function(item){
+        //         var itemArray =  item.split('=');
+        //         queryObj[itemArray[0]] = itemArray[1];
+        //     })
+        //     return queryObj;
+        // }
+        // $("#pic-submit").click(function(){
+        //     // parent.$("#pic1").css("background-image","url(../css/default/icon.png)");
+        //     var query=getUrlQueryObject();
+        //     $pic=parent.$("#"+query.id);
+        //     $pic.css("background-image","url("+url+")");
+        //     $pic.css("background-color","#fff");
+        //     $pic.css("background-size","100% 100%");
+        //     $pic.text(" ");
+        //     layer_close();
+        // });
+        // $("#pic-cancle").click(function () {
+        //     $("#video").show();
+        //     $("#canvas").hide();
+        //     $(".button-list").hide();
+        //     $("#snap").show();
+        // });
+        // function takePhotoes() {
+        //     ctx.drawImage(video, 0, 0,width,height);
+        //     //  $("#download").href=url;
+        //     $("#video").hide();
+        //     $("#canvas").show();
+        //     $(".button-list").show();
+        //     url = canvas.toDataURL('image/png');
+        //     // console.log(url);
+        //     //sessionStorage.setItem("imgURL", url);
+        //
+        //     //document.getElementById('download').href = url;
+        // }
+        // var video = document.getElementById('video');
+        // var canvas = document.getElementById('canvas');
+        // var ctx = canvas.getContext('2d');
+        // var width = window.innerWidth*0.35;
+        // var height = window.innerWidth*0.23;
+        // canvas.width = width
+        // canvas.height = height;
+        // console.log(window.innerWidth);
+        // console.log(width+"  "+height);
+        // // console.log(window.innerWidth);
+        // function liveVideo(){
+        //     var URL = window.URL || window.webkitURL;   // 获取到window.URL对象
+        //     navigator.getUserMedia({
+        //         video: true
+        //     }, function(stream){
+        //         video.src = URL.createObjectURL(stream);   // 将获取到的视频流对象转换为地址
+        //         video.play();   // 播放
+        //         //点击截图
+        //         document.getElementById("snap").addEventListener('click', function(){
+        //             takePhotoes();
+        //             $("#snap").hide();
+        //             $(".button-list").show();
+        //         });
+        //
+        //     }, function(error){
+        //         console.log(error.name || error);
+        //     });
+        // }
+        // // document.getElementById("live").addEventListener('click',function(){
+        // //     liveVideo();
+        // // });
+        // function product_brand_edit(title, url, w, h, id) {
+        //     layer_show(title, url, w, h, id);
+        // }
+    });
+</script>
+</body>
+</html>
